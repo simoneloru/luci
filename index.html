@@ -40,6 +40,8 @@
     <div class="context">
       <h2 id="resTitle" data-i18n="trending">Trending</h2>
       <span id="resCount"></span>
+      <span class="spacer"></span>
+      <button class="viewbtn" id="viewBtn" aria-label="Toggle grid/list view" title="Grid / list">☰</button>
       <select id="sort" aria-label="Sort">
         <option value="pop" data-i18n="sortPop">Most popular</option>
         <option value="vote" data-i18n="sortVote">Top rated</option>
@@ -52,7 +54,7 @@
   </main>
 
   <main id="view-watched" hidden>
-    <div class="context"><h2 data-i18n="myWatched">My watched</h2><span id="watchedCount"></span></div>
+    <div class="context"><h2 data-i18n="myWatched">My watched</h2><span id="watchedCount"></span><span class="spacer"></span><button class="viewbtn" id="viewBtnW" aria-label="Toggle grid/list view" title="Grid / list">☰</button></div>
     <div class="toolbar">
       <input id="fWatched" type="search" placeholder="Filter: title, director, actor, note…" aria-label="Filter watched" data-i18n-ph="filterPh" />
       <select id="fYear" aria-label="Filter by year"><option value="" data-i18n="yearAll">Year: all</option></select>
@@ -71,7 +73,7 @@
   </main>
 
   <main id="view-watchlist" hidden>
-    <div class="context"><h2 data-i18n="watchlist">Watchlist</h2><span id="wlCount"></span></div>
+    <div class="context"><h2 data-i18n="watchlist">Watchlist</h2><span id="wlCount"></span><span class="spacer"></span><button class="viewbtn" id="viewBtnWl" aria-label="Toggle grid/list view" title="Grid / list">☰</button></div>
     <div id="gridWl" class="grid"></div>
     <div id="emptyWl" class="empty" hidden></div>
   </main>

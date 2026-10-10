@@ -45,6 +45,7 @@
       rating: "Rating",
       exportDone: "Exported ✓", importDone: "Imported ✓", importFail: "Invalid file.",
       keySaved: "Key saved ✓", keyMissing: "Paste a key first.",
+      viewToggle: "Grid / list view",
       andMore: function (n) { return "+ " + n + " more"; }
     },
     it: {
@@ -87,6 +88,7 @@
       rating: "Voto",
       exportDone: "Esportato ✓", importDone: "Importato ✓", importFail: "File non valido.",
       keySaved: "Chiave salvata ✓", keyMissing: "Incolla prima una chiave.",
+      viewToggle: "Vista griglia / lista",
       andMore: function (n) { return "+ altri " + n; }
     }
   };
@@ -144,6 +146,8 @@
   var data = loadData();
   var mode = "all", query = "", results = [], persons = [];
   var page = 1, totalPages = 1, personFilter = null, sortBy = "pop";
+  var viewMode = readLS("luci.view", "grid");
+  if (viewMode !== "list" && viewMode !== "grid") viewMode = "grid";
 
   /* ---------- dom ---------- */
   function $(id) { return document.getElementById(id); }
@@ -152,7 +156,8 @@
    "fWatched", "fYear", "fRating", "gridWatched", "emptyWatched", "watchedCount",
    "gridWl", "emptyWl", "wlCount", "nWatched", "nWl",
    "exportBtn", "importBtn", "importFile", "settingsBtn", "settingsDlg",
-   "keyInput", "saveKey", "sheetRoot", "toastRoot", "langBtn"].forEach(function (id) { els[id] = $(id); });
+   "keyInput", "saveKey", "sheetRoot", "toastRoot", "langBtn",
+   "viewBtn", "viewBtnW", "viewBtnWl"].forEach(function (id) { els[id] = $(id); });
 
   /* ---------- i18n apply ---------- */
   function applyLang() {
@@ -171,6 +176,7 @@
     });
     els.langBtn.textContent = lang === "it" ? "EN" : "IT";
     writeLS(LS_LANG, lang);
+    syncViewButtons();
     renderAll();
   }
 
@@ -187,12 +193,36 @@
     var img = m.poster_path
       ? '<img loading="lazy" src="' + poster(m.poster_path) + '" alt="' + esc(m.title) + '" />'
       : '<span class="ph">' + esc(m.title) + "</span>";
+    var sub = yearOf(m);
+    if (rec && rec.director) sub += " · " + rec.director;
+    if (rec && rec.watched && rec.rating) sub += " · " + rec.rating + "★";
     return '<button class="card" data-id="' + id + '"><span class="poster">' + img +
       (badges ? '<span class="badge">' + badges + "</span>" : "") +
-      '</span><h3>' + esc(m.title) + "</h3><p>" + esc(yearOf(m)) + "</p></button>";
+      '</span><span class="cap"><h3>' + esc(m.title) + '</h3><span class="yr">' + esc(sub) + "</span></span></button>";
   }
 
-  function renderGrid(grid, list) { grid.innerHTML = list.map(cardHTML).join(""); }
+  function renderGrid(grid, list) {
+    grid.classList.toggle("list", viewMode === "list");
+    grid.innerHTML = list.map(cardHTML).join("");
+  }
+
+  function syncViewButtons() {
+    var icon = viewMode === "list" ? "▦" : "☰";
+    [els.viewBtn, els.viewBtnW, els.viewBtnWl].forEach(function (b) {
+      if (!b) return;
+      b.textContent = icon;
+      b.setAttribute("aria-pressed", viewMode === "list" ? "true" : "false");
+      b.title = t("viewToggle");
+      b.setAttribute("aria-label", t("viewToggle"));
+    });
+  }
+
+  function toggleView() {
+    viewMode = (viewMode === "list") ? "grid" : "list";
+    writeLS("luci.view", viewMode);
+    syncViewButtons();
+    renderAll();
+  }
 
   function sortList(list) {
     var l = list.slice();
@@ -591,6 +621,9 @@
   els.q.addEventListener("keydown", function (e) { if (e.key === "Enter") runSearch(); });
   els.more.addEventListener("click", loadMore);
   els.sort.addEventListener("change", function () { sortBy = els.sort.value; renderResults(); });
+  [els.viewBtn, els.viewBtnW, els.viewBtnWl].forEach(function (b) {
+    if (b) b.addEventListener("click", toggleView);
+  });
   document.querySelectorAll(".tabs button").forEach(function (b) {
     b.addEventListener("click", function () { switchTab(b.getAttribute("data-tab")); });
   });
