@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Privacy — Luce</title>
+  <meta name="description" content="Privacy notice for Luce. No accounts, your data stays in your browser." />
+  <meta name="theme-color" content="#0f1115" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .doc { max-width: 760px; margin: 0 auto; padding: 20px 14px 60px; }
+    .doc h1 { font-size: 24px; margin: 8px 0 2px; }
+    .doc .updated { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+    .doc h2 { font-size: 17px; margin: 22px 0 6px; }
+    .doc p, .doc li { font-size: 15px; }
+    .doc ul { padding-left: 20px; }
+    .doc a { color: var(--accent); }
+    .backlink { display: inline-block; margin-top: 6px; color: var(--accent); text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="./icon.svg" alt="" width="26" height="26" />
+      <b>Luce</b>
+      <small>Privacy</small>
+      <button id="langBtn" title="Language / Lingua" aria-label="Switch language">IT</button>
+    </div>
+  </header>
+
+  <main class="doc">
+    <a class="backlink" href="./">← Luce</a>
+    <h1 data-en="Privacy notice" data-it="Informativa privacy">Privacy notice</h1>
+    <div class="updated"><span data-en="Last updated: " data-it="Ultimo aggiornamento: ">Last updated: </span>2026-10-10</div>
+
+    <h2 data-en="Short version" data-it="In breve">Short version</h2>
+    <p data-en="Luce has no accounts and no tracking. Your movie lists, ratings, notes and settings stay in your browser (localStorage). We never see them, and we never collect your email."
+       data-it="Luce non ha account e non ti traccia. Le tue liste di film, voti, note e impostazioni restano nel tuo browser (localStorage). Noi non li vediamo e non raccogliamo la tua email.">Luce has no accounts and no tracking. Your movie lists, ratings, notes and settings stay in your browser (localStorage). We never see them, and we never collect your email.</p>
+
+    <h2 data-en="Data controller" data-it="Titolare del trattamento">Data controller</h2>
+    <p data-en="This is a personal, non-commercial project by Simone Loru. Contact via the GitHub repository issues page: github.com/simoneloru/luci."
+       data-it="Progetto personale e non commerciale di Simone Loru. Contatti tramite la pagina issues del repository GitHub: github.com/simoneloru/luci.">This is a personal, non-commercial project by Simone Loru. Contact via the GitHub repository issues page: github.com/simoneloru/luci.</p>
+
+    <h2 data-en="What we store (nothing on our servers)" data-it="Cosa salviamo (niente sui nostri server)">What we store (nothing on our servers)</h2>
+    <ul>
+      <li data-en="Your data (watched movies, watchlist, ratings 1–5, notes, watch dates, UI language) is stored only in your browser's localStorage under keys like luci.v1 and luci.lang. It never leaves your device except when you explicitly use Export (you download a JSON file)."
+          data-it="I tuoi dati (film visti, watchlist, voti 1–5, note, date di visione, lingua) sono salvati solo nel localStorage del tuo browser (chiavi tipo luci.v1 e luci.lang). Non lasciano mai il tuo dispositivo, tranne quando usi Esporta (scarichi un file JSON).">Your data (watched movies, watchlist, ratings 1–5, notes, watch dates, UI language) is stored only in your browser's localStorage under keys like luci.v1 and luci.lang. It never leaves your device except when you explicitly use Export (you download a JSON file).</li>
+      <li data-en="Your TMDB API key, if you enter one in Settings, is stored only in your browser (luci.tmdbKey). Never commit it to the repo."
+          data-it="La tua chiave API TMDB, se la inserisci nelle Impostazioni, resta solo nel tuo browser (luci.tmdbKey). Non committarla mai nel repo.">Your TMDB API key, if you enter one in Settings, is stored only in your browser (luci.tmdbKey). Never commit it to the repo.</li>
+      <li data-en="We do not collect or store email addresses. Email would only be needed if accounts are introduced in the future — and that would require your explicit consent plus an updated notice."
+          data-it="Non raccogliamo né salviamo indirizzi email. La email servirebbe solo se in futuro introdurremo gli account — e in quel caso servirebbero il tuo consenso esplicito e un'informativa aggiornata.">We do not collect or store email addresses. Email would only be needed if accounts are introduced in the future — and that would require your explicit consent plus an updated notice.</li>
+    </ul>
+
+    <h2 data-en="Third parties" data-it="Terze parti">Third parties</h2>
+    <ul>
+      <li><span data-en="Movie data: search terms and movie lookups are sent over HTTPS to The Movie Database (TMDB) API to show titles, posters, cast and runtimes. See " data-it="Dati film: i termini cercati sono inviati via HTTPS alle API di The Movie Database (TMDB) per mostrare titoli, locandine, cast e durate. Vedi ">Movie data: search terms and movie lookups are sent over HTTPS to The Movie Database (TMDB) API to show titles, posters, cast and runtimes. See </span><a href="https://www.themoviedb.org/privacy-policy">TMDB privacy policy</a>.</li>
+      <li><span data-en="Hosting: the site is served by GitHub Pages, which may process technical logs (e.g. IP address) to operate the service. See " data-it="Hosting: il sito è servito da GitHub Pages, che può trattare log tecnici (es. indirizzo IP) per erogare il servizio. Vedi ">Hosting: the site is served by GitHub Pages, which may process technical logs (e.g. IP address) to operate the service. See </span><a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">GitHub privacy statement</a>.</li>
+      <li data-en="No analytics, no advertising, no profiling cookies. Only technically necessary browser storage is used."
+          data-it="Niente analytics, niente pubblicità, niente cookie di profilazione. Solo storage tecnico necessario nel browser.">No analytics, no advertising, no profiling cookies. Only technically necessary browser storage is used.</li>
+    </ul>
+
+    <h2 data-en="Legal basis (GDPR)" data-it="Base giuridica (GDPR)">Legal basis (GDPR)</h2>
+    <p data-en="Where the GDPR applies, processing is limited to what is strictly necessary to provide the site you requested (GDPR Art. 6(1)(b)) and to our legitimate interest in running a secure, functional site (Art. 6(1)(f)). No marketing processing takes place."
+       data-it="Ove si applichi il GDPR, il trattamento è limitato a quanto strettamente necessario per fornire il sito richiesto (art. 6(1)(b) GDPR) e al nostro legittimo interesse a far funzionare un sito sicuro (art. 6(1)(f)). Nessun trattamento di marketing.">Where the GDPR applies, processing is limited to what is strictly necessary to provide the site you requested (GDPR Art. 6(1)(b)) and to our legitimate interest in running a secure, functional site (Art. 6(1)(f)). No marketing processing takes place.</p>
+
+    <h2 data-en="Your rights" data-it="I tuoi diritti">Your rights</h2>
+    <p data-en="You can access and delete everything at any time: your data lives in your browser, so clearing site data (or removing entries via the app / Export file) erases it. To exercise GDPR rights (access, rectification, erasure, restriction, portability, objection), contact us via the repository page and we will reply."
+       data-it="Puoi accedere a tutto e cancellare tutto in ogni momento: i dati sono nel tuo browser, quindi cancellando i dati del sito (o le voci via app / file Export) li elimini. Per esercitare i diritti GDPR (accesso, rettifica, cancellazione, limitazione, portabilità, opposizione), contattaci tramite la pagina del repository e ti risponderemo.">You can access and delete everything at any time: your data lives in your browser, so clearing site data (or removing entries via the app / Export file) erases it. To exercise GDPR rights (access, rectification, erasure, restriction, portability, objection), contact us via the repository page and we will reply.</p>
+
+    <h2 data-en="Retention" data-it="Conservazione">Retention</h2>
+    <p data-en="Local data is kept until you delete it. Exported JSON files are yours: keep or delete them as you like. Server logs (GitHub/TMDB) follow those providers' retention policies."
+       data-it="I dati locali restano finché non li cancelli tu. I file JSON esportati sono tuoi: conservali o eliminali come vuoi. I log server (GitHub/TMDB) seguono le policy di quei fornitori.">Local data is kept until you delete it. Exported JSON files are yours: keep or delete them as you like. Server logs (GitHub/TMDB) follow those providers' retention policies.</p>
+
+    <h2 data-en="About saving an email in the future" data-it="Sul salvare una email in futuro">About saving an email in the future</h2>
+    <p data-en="Saving an email is allowed, but it is personal data: it needs a clear purpose, a legal basis (usually consent), data minimization (email only, nothing more), EU-region storage, and the ability to export/delete the account. That is why the current version deliberately avoids accounts."
+       data-it="Salvare una email è consentito, ma è un dato personale: servono finalità chiara, base giuridica (di solito il consenso), minimizzazione (solo email, niente altro), storage in regione UE e possibilità di esportare/cancellare l'account. Per questo la versione attuale evita volutamente gli account.">Saving an email is allowed, but it is personal data: it needs a clear purpose, a legal basis (usually consent), data minimization (email only, nothing more), EU-region storage, and the ability to export/delete the account. That is why the current version deliberately avoids accounts.</p>
+
+    <h2 data-en="Changes" data-it="Modifiche">Changes</h2>
+    <p data-en="If the app changes (e.g. accounts are added), this notice will be updated and the update date revised."
+       data-it="Se l'app cambia (es. vengono aggiunti gli account), questa informativa verrà aggiornata con nuova data.">If the app changes (e.g. accounts are added), this notice will be updated and the update date revised.</p>
+  </main>
+
+  <script>
+    // Minimal language switcher (English source, Italian translation inline).
+    (function () {
+      var KEY = "luci.lang";
+      function pick() {
+        try { return localStorage.getItem(KEY) || ((navigator.language || "en").toLowerCase().indexOf("it") === 0 ? "it" : "en"); }
+        catch (e) { return "en"; }
+      }
+      function apply(lang) {
+        document.documentElement.lang = lang === "it" ? "it" : "en";
+        document.querySelectorAll("[data-en]").forEach(function (el) {
+          el.textContent = lang === "it" ? (el.getAttribute("data-it") || el.getAttribute("data-en")) : el.getAttribute("data-en");
+        });
+        var btn = document.getElementById("langBtn");
+        if (btn) btn.textContent = lang === "it" ? "EN" : "IT";
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+      var btn = document.getElementById("langBtn");
+      if (btn) btn.addEventListener("click", function () {
+        apply(pick() === "it" ? "en" : "it");
+      });
+      apply(pick());
+    })();
+  </script>
+</body>
+</html>

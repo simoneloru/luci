@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Luce — movies we watched</title>
+  <meta name="description" content="Luce: search movies by title, director, actor or year, mark them as watched and save your thoughts." />
+  <meta name="theme-color" content="#0f1115" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="./icon.svg" alt="" width="26" height="26" />
+      <b>Luce</b>
+      <small data-i18n="tagline">movies we watched</small>
+      <button id="langBtn" title="Language / Lingua" aria-label="Switch language">IT</button>
+      <button id="settingsBtn" title="Settings / TMDB key" aria-label="Settings">⚙</button>
+    </div>
+    <div class="searchrow" role="search">
+      <input id="q" type="search" autocomplete="off" enterkeyhint="search"
+        placeholder="Title, director, actor or year… e.g. 1980" aria-label="Search movies"
+        data-i18n-ph="searchPh" />
+      <button id="go" aria-label="Search">🔍</button>
+    </div>
+    <nav class="chips" aria-label="Search type">
+      <button class="chip" data-mode="all" aria-pressed="true" data-i18n="modeAll">All</button>
+      <button class="chip" data-mode="title" aria-pressed="false" data-i18n="modeTitle">Title</button>
+      <button class="chip" data-mode="director" aria-pressed="false" data-i18n="modeDirector">Director</button>
+      <button class="chip" data-mode="actor" aria-pressed="false" data-i18n="modeActor">Actor</button>
+      <button class="chip" data-mode="year" aria-pressed="false" data-i18n="modeYear">Year</button>
+    </nav>
+  </header>
+
+  <main id="view-search">
+    <div class="suggest" id="suggest" hidden></div>
+    <div id="personRow" class="personrow" hidden></div>
+    <div class="context">
+      <h2 id="resTitle" data-i18n="trending">Trending</h2>
+      <span id="resCount"></span>
+      <select id="sort" aria-label="Sort">
+        <option value="pop" data-i18n="sortPop">Most popular</option>
+        <option value="vote" data-i18n="sortVote">Top rated</option>
+        <option value="az">A–Z</option>
+      </select>
+    </div>
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="empty" class="empty" hidden></div>
+    <div class="suggest"><button id="more" hidden data-i18n="showMore">Show more ↓</button></div>
+  </main>
+
+  <main id="view-watched" hidden>
+    <div class="context"><h2 data-i18n="myWatched">My watched</h2><span id="watchedCount"></span></div>
+    <div class="toolbar">
+      <input id="fWatched" type="search" placeholder="Filter: title, director, actor, note…" aria-label="Filter watched" data-i18n-ph="filterPh" />
+      <select id="fYear" aria-label="Filter by year"><option value="" data-i18n="yearAll">Year: all</option></select>
+      <select id="fRating" aria-label="Filter by rating">
+        <option value="" data-i18n="ratingAll">Rating: all</option><option value="5">5★</option>
+        <option value="4">4★+</option><option value="3">3★+</option><option value="notes" data-i18n="withNotes">With notes</option>
+      </select>
+    </div>
+    <div class="toolbar">
+      <button class="chip" id="exportBtn" aria-pressed="false" data-i18n="exportJson">⬇ Export JSON</button>
+      <button class="chip" id="importBtn" aria-pressed="false" data-i18n="importJson">⬆ Import JSON</button>
+      <input type="file" id="importFile" accept="application/json" hidden />
+    </div>
+    <div id="gridWatched" class="grid"></div>
+    <div id="emptyWatched" class="empty" hidden></div>
+  </main>
+
+  <main id="view-watchlist" hidden>
+    <div class="context"><h2 data-i18n="watchlist">Watchlist</h2><span id="wlCount"></span></div>
+    <div id="gridWl" class="grid"></div>
+    <div id="emptyWl" class="empty" hidden></div>
+  </main>
+
+  <nav class="tabs" aria-label="Sections">
+    <button data-tab="search" aria-selected="true"><span class="ic">🔍</span><span data-i18n="tabSearch">Search</span></button>
+    <button data-tab="watched" aria-selected="false"><span class="ic">✓</span><span data-i18n="tabWatched">Watched</span> <span id="nWatched"></span></button>
+    <button data-tab="watchlist" aria-selected="false"><span class="ic">＋</span><span data-i18n="tabWatchlist">Watchlist</span> <span id="nWl"></span></button>
+  </nav>
+
+  <div id="sheetRoot"></div>
+  <div id="toastRoot"></div>
+
+  <footer style="text-align:center;padding:18px 12px 8px;color:var(--muted);font-size:13px">
+    <a href="./privacy.html" style="color:var(--accent);font-weight:700">Privacy</a>
+    <span> · Apache-2.0 · </span>
+    <a href="https://github.com/simoneloru/luci" style="color:var(--muted)">GitHub</a>
+  </footer>
+
+  <dialog id="settingsDlg">
+    <form method="dialog">
+      <h3 style="margin-top:0">TMDB key</h3>
+      <p style="color:var(--muted);font-size:14px" data-i18n="keyHelp">Free from themoviedb.org → Settings → API (v3 key). It stays in your browser only, never in the repo.</p>
+      <input id="keyInput" type="password" placeholder="Paste your v3 key here…" autocomplete="off" data-i18n-ph="keyPh" />
+      <div class="row">
+        <button value="cancel" data-i18n="close">Close</button>
+        <button value="default" id="saveKey" class="primary" data-i18n="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="./config.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
